@@ -20,9 +20,12 @@
       "temperature",
       "cpu",
       "memory#ram",
+      "custom/spacer1",
       // "group/storage",
       // "disk",
       // "network#info",
+      "battery",
+      "backlight",
       "custom/spacer1",
       "pulseaudio#input",
       "pulseaudio#output",
@@ -57,17 +60,6 @@
       "modules": ["custom/trayicon", "tray"]
     },
 
-    "group/storage": {
-      "orientation": "horizontal",
-      "drawer": {
-        "transition-duration": "500",
-        "transition-left-to-right": "true",
-        "children-class": "drawer-child"
-        //"click-to-reveal": "false"
-      },
-      "modules": ["memory#ram", "disk"]
-    },
-
     "clock": {
       "interval": 1,
       "format": " {:%H:%M:%S    %d.%m}",
@@ -89,7 +81,7 @@
 
     "cpu": {
       "interval": 4,
-      "format": " {usage}%",
+      "format": "  {usage}%",
       "states": {
         "warning": 80,
         "critical": 95
@@ -98,8 +90,6 @@
 
     "hyprland/language": {
       "format": " {}",
-      "format-fi": "Vittu",
-      "format-ru": "Блять",
       "min-length": 7,
       "on-click": "hyprctl switchxkblayout current next",
       "tooltip": false,
@@ -108,7 +98,7 @@
 
     "memory#ram": {
       "interval": 4,
-      "format": " {percentage}%",
+      "format": "  {percentage}%",
       "states": {
         "warning": 80,
         "critical": 95
@@ -175,19 +165,12 @@
       "format-icons": {
         "magic": " ",
         "10": "󰊴 "
-      },
-      "persistent_workspaces":{
-          "1": [],
-          "2": [],
-          "3": [],
-          "4": [],
-          "5": []
       }
     },
 
     "pulseaudio#output": {
-      "format": "{icon} {volume}%",
-      "format-bluetooth": "{icon} {volume}%",
+      "format": "{icon}  {volume}%",
+      "format-bluetooth": "{icon}  {volume}%",
       "format-source-muted": "{volume}",
       "format-icons": {
         "headphone": "",
@@ -205,7 +188,7 @@
     },
 
     "pulseaudio#input": {
-      "format": " {icon} {format_source}%",
+      "format": "{icon} {format_source}%",
       "format-source": "{volume}",
       "format-source-muted": "{volume}",
       "on-scroll-up": "sh -c 'vol=$(pactl get-source-volume @DEFAULT_SOURCE@ | grep -oP \"\\d+(?=%)\" | head -1); if [ \"$vol\" -lt 100 ]; then pactl set-source-volume @DEFAULT_SOURCE@ +5%; fi'",
@@ -224,8 +207,29 @@
       "tooltip": false
     },
 
+    "battery": {
+        "bat": "BAT0",
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󰂄",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "",
+        "format-full": "100% ",
+        "format-icons": ["", "", "", "", ""],
+    },
+
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": ["", ""]
+    },
+
     "tray": {
-      "icon-size": 17,
+      "icon-size": 18,
       "spacing": 8
     },
 

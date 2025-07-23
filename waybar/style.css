@@ -282,4 +282,8 @@ tooltip {
   background: @background;
   border: 3px solid @caution;
   border-radius: 8px;
+  font-family: "JetBrains Mono Nerd Font";
+  font-size: 13pt;
+  font-weight: 500;
+  padding: 11px 12px;
 } /* }}} */
